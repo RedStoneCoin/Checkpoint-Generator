@@ -10,7 +10,7 @@ This NodeJS utility generates the current checkpoints.csv file from a daemon and
 It's super easy to set up. Just type
 
 ```bash
-git clone https://github.com/TheDevMinerTV/Checkpoint-Generator && cd Checkpoint-Generator && npm install && npm start
+git clone https://github.com/avrio-project/Checkpoint-Generator && cd Checkpoint-Generator && npm install && npm start
 ```
 
 Then it will fetch all block hashes and save it into checkpoints.csv.
