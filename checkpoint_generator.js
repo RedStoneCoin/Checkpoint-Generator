@@ -39,13 +39,13 @@ daemon.getBlockCount().then(async (height) => {
 		csv += `${checkpoint.height},${checkpoint.hash}\n`
 	}
 	for (const checkpoint_code of checkpoints) {
-		codecheckpoints += `{` + checkpoint_code.height + `,"` + checkpoint_code.hash + `"}\n`
+		codecheckpoints += `{` + checkpoint_code.height + `,"` + checkpoint_code.hash + `"},\n`
 	}
 
 
 	const buffer = Buffer.from(csv, 'ascii');
 	const buffer_code = Buffer.from(codecheckpoints, 'ascii');
-
+       
 	fs.open('checkpoints.csv', 'w', (err, fd) => {
 		if (err) throw err
 
