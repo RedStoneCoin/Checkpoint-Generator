@@ -39,7 +39,7 @@ daemon.getBlockCount().then(async (height) => {
 		csv += `${checkpoint.height},${checkpoint.hash}\n`
 	}
 	for (const checkpoint_code of checkpoints) {
-		codecheckpoints += `{"${checkpoint.height}","${checkpoint.hash}"}\n`
+		codecheckpoints += `{"` + checkpoint_code.height + `","' + checkpoint_code.hash + '"}\n`
 	}
 
 
