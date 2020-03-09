@@ -33,12 +33,18 @@ daemon.getBlockCount().then(async (height) => {
 	console.log('Got', checkpoints.length, 'checkpoints from 0 to', checkpoints[checkpoints.length - 1].height, 'blocks');
 
 	let csv = ''
+	let codecheckpoints = ''
 
 	for (const checkpoint of checkpoints) {
 		csv += `${checkpoint.height},${checkpoint.hash}\n`
 	}
+	for (const checkpoint_code of checkpoints) {
+		codecheckpoints += `{"${checkpoint.height}","${checkpoint.hash}"}\n`
+	}
+
 
 	const buffer = Buffer.from(csv, 'ascii');
+	const buffer_code = Buffer.from(codecheckpoints, 'ascii');
 
 	fs.open('checkpoints.csv', 'w', (err, fd) => {
 		if (err) throw err
@@ -52,6 +58,21 @@ daemon.getBlockCount().then(async (height) => {
 
 			fs.close(fd, (err) => {
 				console.log('Closed checkpoints.csv!');
+			});
+		});
+	})
+	fs.open('checkpoints_code.txt', 'w', (err, fd) => {
+		if (err) throw err
+
+		console.log('Opened checkpoints_code.txt!');
+
+		fs.write(fd, buffer_code, 0, buffer_code.byteLength, 0, (err, bytes) => {
+			if(err) throw err;
+
+			console.log('Wrote', Math.floor(bytes / 1024), ' kilobytes');
+
+			fs.close(fd, (err) => {
+				console.log('Closed checkpoints.txt!');
 			});
 		});
 	})
