@@ -3,7 +3,7 @@ const fs = require('fs'),
 
 const daemon = new TurtleCoind({
 	host: '127.0.0.1', // ip address or hostname of the Telluriumd host
-	port: 24524, // what port is the RPC server running on
+	port: 44402, // what port is the RPC server running on
 	timeout: 30000, // request timeout
 	ssl: false // whether we need to connect using SSL/TLS
 });
